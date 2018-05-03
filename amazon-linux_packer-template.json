@@ -31,7 +31,6 @@
     "provisioners": [
         {
             "type": "shell",
-		"remote_path":"/tmp/Hardening.sh",
             "inline": [
                 "sudo yum update -y",
 		"sudo /usr/sbin/update-motd --disable",
@@ -40,7 +39,8 @@
                 "sudo ln -s /etc/motd /etc/issue",
                 "sudo yum install -y elinks screen",
 		"sudo sh -x /tmp/Hardening.sh"
-            ]
+            ],
+		"script":"/tmp/Hardening.sh"
         }
     ]
 }
