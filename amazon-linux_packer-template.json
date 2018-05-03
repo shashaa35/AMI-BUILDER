@@ -1,7 +1,7 @@
 {
     "variables": {
         "aws_region": "{{env `AWS_REGION`}}",
-        "aws_ami_name": "amazon-linux_{{isotime \"02Jan2006\"}}"
+        "aws_ami_name": "amzn-ami-hvm-2018.03.0.20180412-x86_64-gp2"
     },
 
     "builders": [{
@@ -18,7 +18,7 @@
                 "name": "amzn-ami*-ebs",
                 "root-device-type": "ebs"
             },
-            "owners": ["137112412989", "591542846629", "801119661308", "102837901569", "013907871322", "206029621532", "286198878708", "443319210888"],
+            "owners": ["605459709489"],
             "most_recent": true
         }
     }],
