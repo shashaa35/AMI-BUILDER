@@ -17,11 +17,10 @@
 	"vpc_id":"{{user `vpcid`}}",
 	"subnet_id":"{{user `subnetid`}}",
 	"security_group_id":"{{user `securitygroupid`}}",
-        "associate_public_ip_address": "true",
         "source_ami_filter": {
             "filters": {
                 "virtualization-type": "hvm",
-                "name": "amzn-ami*-ebs",
+                "name": "amzn-ami-hvm*-gp2",
                 "root-device-type": "ebs"
             },
             "owners": ["137112412989", "591542846629", "801119661308", "102837901569", "013907871322", "206029621532", "286198878708", "443319210888"],
