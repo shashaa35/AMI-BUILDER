@@ -1,7 +1,10 @@
 {
     "variables": {
         "aws_region": "{{env `AWS_REGION`}}",
-        "aws_ami_name": "amazon-linux_{{isotime \"03May2018\"}}"
+        "aws_ami_name": "amazon-linux_{{isotime \"03May2018\"}}",
+	"vpcid":"{{env `VPC_ID`}}",
+	"subnetid":"{{env `SUBNET_ID`}}",
+	"securitygroupid":"{{env `SECURITY_GID`}}",   
     },
 
     "builders": [{
@@ -11,6 +14,9 @@
         "ssh_username": "ec2-user",
         "ami_name": "{{user `aws_ami_name`}}",
         "ami_description": "Customized Amazon Linux",
+	"vpc_id":"{{user `vpcid`}}",
+	"subnet_id":"{{user `subnetid`}}",
+	"security_group_id":"{{user `securitygroupid`}}",
         "associate_public_ip_address": "true",
         "source_ami_filter": {
             "filters": {
