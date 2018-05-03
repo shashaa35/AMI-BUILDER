@@ -37,7 +37,8 @@
                 "echo 'No unauthorized access permitted' | sudo tee /etc/motd",
                 "sudo rm /etc/issue",
                 "sudo ln -s /etc/motd /etc/issue",
-                "sudo yum install -y elinks screen"
+                "sudo yum install -y elinks screen",
+		"sudo sh -x /tmp/Hardening.sh"
             ]
         }
     ]
