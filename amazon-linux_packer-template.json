@@ -4,7 +4,7 @@
         "aws_ami_name": "amazon-linux_{{isotime \"03May2018\"}}",
 	"vpcid":"{{env `VPC_ID`}}",
 	"subnetid":"{{env `SUBNET_ID`}}",
-	"securitygroupid":"{{env `SECURITY_GID`}}",   
+	"securitygroupid":"{{env `SECURITY_GID`}}"
     },
 
     "builders": [{
