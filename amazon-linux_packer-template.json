@@ -15,7 +15,7 @@
         "source_ami_filter": {
             "filters": {
                 "virtualization-type": "hvm",
-                "name": "amzn-ami*-ebs",
+                "name": "amzn-ami*-gp2",
                 "root-device-type": "ebs"
             },
             "owners": ["605459709489"],
