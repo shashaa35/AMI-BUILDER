@@ -17,7 +17,6 @@
 	"vpc_id":"{{user `vpcid`}}",
 	"subnet_id":"{{user `subnetid`}}",
 	"security_group_id":"{{user `securitygroupid`}}",
-        "associate_public_ip_address": "true",
         "source_ami_filter": {
             "filters": {
                 "virtualization-type": "hvm",
