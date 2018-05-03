@@ -31,15 +31,16 @@
     "provisioners": [
         {
             "type": "shell",
+		"remote_path":"/tmp/Hardening.sh",
             "inline": [
                 "sudo yum update -y",
-				"sudo /usr/sbin/update-motd --disable",
+		"sudo /usr/sbin/update-motd --disable",
                 "echo 'No unauthorized access permitted' | sudo tee /etc/motd",
                 "sudo rm /etc/issue",
                 "sudo ln -s /etc/motd /etc/issue",
-                "sudo yum install -y elinks screen"
-            ],
-	    "remote_path":"/tmp/Hardening.sh"
+                "sudo yum install -y elinks screen",
+		"sudo sh -x /tmp/Hardening.sh"
+            ]
         }
     ]
 }
