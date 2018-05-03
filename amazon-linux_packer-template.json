@@ -38,9 +38,13 @@
                 "sudo rm /etc/issue",
                 "sudo ln -s /etc/motd /etc/issue",
                 "sudo yum install -y elinks screen",
-		"echo Downloading the Hardening Scripts from GIT",
+		"echo Downloading and Installing Hubble.......",
+		"sudo rpm -Uvh https://s3-us-west-2.amazonaws.com/hubblestack-releases/hubblestack-2.2.9-1.default.al1609.x86_64.rpm",
+		"echo Downloading the Hardening Scripts from GIT........",
 		"sudo wget https://raw.githubusercontent.com/robinku07/Remediation-kits/master/Amazon-CIS-Remediation.sh -O /tmp/Hardening.sh",
-		"sudo sh -x /tmp/Hardening.sh"
+		"sudo sh -x /tmp/Hardening.sh",
+		"sudo hubble hubble.audit"
+		
             ]
         }
     ]
