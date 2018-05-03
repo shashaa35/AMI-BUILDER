@@ -1,7 +1,7 @@
 {
     "variables": {
         "aws_region": "{{env `AWS_REGION`}}",
-        "aws_ami_name": "amazon-linux_{{isotime \"02Jan2006\"}}",
+        "aws_ami_name": "amazon-linux_{{timestamp}}",
 	"vpcid":"{{env `VPC_ID`}}",
 	"subnetid":"{{env `SUBNET_ID`}}",
 	"securitygroupid":"{{env `SECURITY_GID`}}"
