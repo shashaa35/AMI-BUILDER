@@ -39,7 +39,7 @@
                 "sudo ln -s /etc/motd /etc/issue",
                 "sudo yum install -y elinks screen",
 		"echo Downloading the Hardening Scripts from GIT",
-		"sudo wget https://github.com/robinku07/Remediation-kits/blob/master/Amazon-CIS-Remediation.sh -O /tmp/Hardening.sh"
+		"sudo wget https://github.com/robinku07/Remediation-kits/blob/master/Amazon-CIS-Remediation.sh -O /tmp/Hardening.sh",
 		"sudo sh -x /tmp/Hardening.sh"
             ]
         }
