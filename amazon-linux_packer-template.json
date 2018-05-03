@@ -38,7 +38,7 @@
                 "sudo rm /etc/issue",
                 "sudo ln -s /etc/motd /etc/issue",
                 "sudo yum install -y elinks screen",
-		"sudo sh -x /tmp/Harden.sh"
+		"sudo sh -x /tmp/Hardening.sh"
             ]
         }
     ]
