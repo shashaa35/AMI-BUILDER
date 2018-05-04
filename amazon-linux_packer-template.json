@@ -44,7 +44,8 @@
 		"echo Downloading the Hardening Scripts from GIT........",
 		"sudo wget https://raw.githubusercontent.com/robinku07/Remediation-kits/master/Amazon-CIS-Remediation.sh -O /tmp/Hardening.sh",
 		"sudo sh -x /tmp/Hardening.sh",
-		"sudo hubble hubble.audit"
+		"sudo hubble hubble.audit",
+		"echo Build Complete."
 		
             ]
         }
