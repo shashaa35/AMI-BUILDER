@@ -17,17 +17,6 @@
 	"vpc_id":"{{user `vpcid`}}",
 	"subnet_id":"{{user `subnetid`}}",
 	"security_group_id":"{{user `securitygroupid`}}",
-	"ami_regions": [
-        "us-west-1",
-        "us-west-2",
-        "ap-southeast-1",
-        "ap-southeast-2",
-        "ap-northeast-1",
-        "ap-south-1",
-        "eu-west-1",
-        "eu-central-1",
-        "sa-east-1"
-      ],
         "source_ami_filter": {
             "filters": {
                 "virtualization-type": "hvm",
