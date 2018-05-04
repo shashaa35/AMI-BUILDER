@@ -40,7 +40,7 @@
                 "sudo yum install -y elinks screen",
 		"echo Downloading and Installing Hubble.......",
 		"sudo wget https://s3-us-west-2.amazonaws.com/hubblestack-releases/hubblestack-2.2.9-1.default.al1609.x86_64.rpm -O /tmp/hubblestack-2.2.9-1.default.al1609.x86_64.rpm",
-		"sudo yum localinstall hubblestack-2.2.9-1.default.al1609.x86_64.rpm -y",
+		"sudo yum localinstall /tmp/hubblestack-2.2.9-1.default.al1609.x86_64.rpm -y",
 		"echo Downloading the Hardening Scripts from GIT........",
 		"sudo wget https://raw.githubusercontent.com/robinku07/Remediation-kits/master/Amazon-CIS-Remediation.sh -O /tmp/Hardening.sh",
 		"sudo sh -x /tmp/Hardening.sh",
