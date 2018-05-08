@@ -84,7 +84,7 @@
    },
    {
       "type": "powershell",
-      "pause_before":"5",
+      "pause_before":"5m",
       "inline": [ "echo \"Handling Microsoft Bug\"; Clear-ItemProperty -Name NullSessionPipes -Path HKLM:\\SYSTEM\\CurrentControlSet\\Services\\LanManServer\\Parameters" ]
    },
     {
