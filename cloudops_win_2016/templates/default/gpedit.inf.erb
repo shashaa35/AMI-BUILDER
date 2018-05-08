@@ -1,0 +1,7 @@
+[System Access]
+LockoutDuration = <%= node['cloudops_win_2016']['LockoutDuration'] %>
+NewGuestName = "<%=node['cloudops_win_2016']['guest_name']%>"
+[Privilege Rights]
+SeDenyRemoteInteractiveLogonRight =<%= node['cloudops_win_2016']['SeDenyRemoteInteractiveLogonRight']%>
+[Version]
+signature="$CHICAGO$"

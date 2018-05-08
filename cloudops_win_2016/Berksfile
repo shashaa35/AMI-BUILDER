@@ -1,0 +1,6 @@
+source "https://supermarket.chef.io"
+source 'https://cookbooks.cloudops.corp.adobe.com'
+
+metadata
+
+cookbook 'chocolatey', '~>0.6.1'

@@ -1,0 +1,98 @@
+{
+  "variables": {
+    "version": "{{env `VERSION`}}",
+    "ami_users": "{{env `AMI_USERS`}}",
+    "source_ami": "ami-10f23f6d",
+    "original_source_ami": "ami-30ac3f4a",
+    "device_name": "/dev/sda1",
+    "volume_size": "80"
+  },
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "us-east-1",
+      "source_ami": "{{user `source_ami`}}",
+      "instance_type": "m3.xlarge",
+      "ami_name": "cloudops_win_2016_{{user `version`}}",
+      "associate_public_ip_address": true,
+      "ami_users": "{{user `ami_users`}}",
+      "ami_description": "cloudops windows 2016 server cookbook {{user `version`}} - https://git.corp.adobe.com/cloudops-cookbooks/cloudops_win_2016",
+      "tags": {
+        "source_ami": "{{user `source_ami`}}",
+        "Name": "cloudops_win_2016_{{user `version`}}"
+      },
+  "vpc_id":"{{user `vpcid`}}",
+  "subnet_id":"{{user `subnetid`}}",
+  "security_group_id":"{{user `securitygroupid`}}",
+      "associate_public_ip_address": true,
+      "snapshot_users": "{{user `ami_users`}}",
+      "communicator": "ssh",
+      "ssh_timeout": "60m",
+      "ssh_username": "ec2-user",
+      "user_data_file": "./ami/userdata.bat",
+      "ami_block_device_mappings": [
+        {
+          "device_name": "{{user `device_name`}}",
+          "volume_size": "{{user `volume_size`}}",
+          "delete_on_termination": true
+        }
+      ],
+      "launch_block_device_mappings": [
+        {
+          "device_name": "{{user `device_name`}}",
+          "volume_size": "{{user `volume_size`}}",
+          "delete_on_termination": true
+        }
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "windows-shell",
+      "scripts": [
+        "ami/disabletask.bat",
+        "ami/installtools.bat"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "cookbooks",
+      "destination": "cookbooks"
+    },
+    {
+      "type": "windows-shell",
+      "inline": [
+        "mkdir \"C:\\ProgramData\\image_info\"",
+        "chdir \"C:\\ProgramData\\image_info\"",
+        "copy NUL cloudops_win_2016_{{user `version`}}"
+      ]
+    },
+    {
+      "type": "powershell",
+      "inline": [ "echo \"Adding registry keys to enable spectre and meltdown mitigations\"; New-ItemProperty -Path \"HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management\" -Name FeatureSettingsOverride -Value 0 -PropertyType DWORD -Force; New-ItemProperty -Path \"HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management\" -Name FeatureSettingsOverrideMask -Value 3 -PropertyType DWORD -Force; New-Item -Path \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Virtualization\" -Force; New-ItemProperty -Path \"HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Virtualization\" -Name MinVmVersionForCpuBasedMitigations -Value \"1.0\" -PropertyType STRING -Force" ]
+   },
+    {
+      "type": "shell",
+      "expect_disconnect": true,
+      "script": "ami/provision.sh",
+      "remote_path": "/home/ec2-user/provision.sh"
+    },
+    {
+      "type": "powershell",
+      "pause_before":"2m",
+      "inline": [ "echo \"Restart Computer\"; Start-Sleep 5; Restart-Computer -force" ]
+   },
+   {
+      "type": "powershell",
+      "pause_before":"5",
+      "inline": [ "echo \"Handling Microsoft Bug\"; Clear-ItemProperty -Name NullSessionPipes -Path HKLM:\\SYSTEM\\CurrentControlSet\\Services\\LanManServer\\Parameters" ]
+   },
+    {
+      "type": "powershell",
+      "environment_vars": ["ProgramData=C:\\ProgramData", "windir=C:\\Windows"],
+      "inline": [
+        "C:\\ProgramData\\Amazon\\EC2-Windows\\Launch\\Scripts\\InitializeInstance.ps1 -Schedule"
+      ]
+    }
+  ]
+}
