@@ -22,7 +22,8 @@ phases:
       - aws configure set aws_secret_access_key `./jq -r '.SecretAccessKey' aws_credentials.json`
       - aws configure set aws_session_token `./jq -r '.Token' aws_credentials.json`
       - echo "Building HashiCorp Packer template, amazon-linux_packer-template.json"
-      - ./packer build cloudops_win_2016/ami/ami.json
+      - cd cloudops_win_2016
+      - ../packer build ami/ami.json
   post_build:
     commands:
       - echo "HashiCorp Packer build completed on `date`"
