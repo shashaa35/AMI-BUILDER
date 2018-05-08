@@ -23,6 +23,11 @@ phases:
       - aws configure set aws_session_token `./jq -r '.Token' aws_credentials.json`
       - echo "Building HashiCorp Packer template, amazon-linux_packer-template.json"
       - cd cloudops_win_2016
+      - bundle install
+      - berks
+      - berks install
+      - berks update
+      - berks vendor cookbooks
       - ../packer build ami/ami.json
   post_build:
     commands:
